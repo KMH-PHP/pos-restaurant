@@ -2,13 +2,13 @@ import React from 'react'
 import { popularDishes } from '../../constants/index'
 const PopularDishes = () => {
   return (
-    <div className='mt-6 pr-6'>
-        <div className='bg-[#1a1a1a] w-full rounded-lg '>
+    <div className='my-6 pr-6'>
+        <div className='bg-[#1a1a1a] w-full rounded-lg overflow-hidden  py-3'>
         <div className='flex justify-between items-center px-6 py-4'>
-                <h1 className='text-[#f5f5f5] text-lg font-semibold tracking-wide'>Recent Orders</h1>
+                <h1 className='text-[#f5f5f5] text-lg font-semibold tracking-wide'>Popular Dishes</h1>
                 <a href='#' className='text-[#025cca] text-sm font-semibold'>View All</a>
             </div>
-            <div className='overflow-y-scroll h-[680px] scrollbar-hide'>
+            <div className='overflow-y-scroll h-[590px] scrollbar-hide'>
                 {
                     popularDishes.map((dish) => {
                         return (

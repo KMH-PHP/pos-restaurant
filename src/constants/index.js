@@ -1,61 +1,63 @@
+import { food1,food2,food3, food4, pasta } from "../assets"
+
 export const popularDishes = [
     {
         id: 1,
-        image: 1,
+        image: food1,
         name: 'Butter Chicken',
         numberOfOrders: 250,
     },
     {
         id: 2,
-        image: 1,
+        image: food2,
         name: 'Butter Chicken',
         numberOfOrders: 250,
     },
     {
         id: 3,
-        image: 1,
+        image: food3,
         name: 'Butter Chicken',
         numberOfOrders: 250,
     },
     {
         id: 4,
-        image: 1,
+        image: food4,
         name: 'Butter Chicken',
         numberOfOrders: 250,
     },
     {
         id: 5,
-        image: 1,
+        image: pasta,
         name: 'Butter Chicken',
         numberOfOrders: 250,
     },
     {
         id: 6,
-        image: 1,
+        image: food1,
         name: 'Butter Chicken',
         numberOfOrders: 250,
     },
     {
         id: 7,
-        image: 1,
+        image: food2,
         name: 'Butter Chicken',
         numberOfOrders: 250,
     },
     {
         id: 8,
-        image: 1,
+        image: food3,
         name: 'Butter Chicken',
         numberOfOrders: 250,
     },
     {
         id: 9,
-        image: 1,
+        image: food4,
         name: 'Butter Chicken',
         numberOfOrders: 250,
     },
     {
         id: 10,
-        image: 1,
+        image: pasta,
         name: 'Butter Chicken',
         numberOfOrders: 250,
     },

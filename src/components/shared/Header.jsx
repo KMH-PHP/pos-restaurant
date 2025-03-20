@@ -1,12 +1,13 @@
 import React from 'react'
 import { FaBell, FaSearch, FaUserCircle } from 'react-icons/fa'
+import {logo, food1} from '../../assets/index'
 
 const Header = () => {
   return (
 <header className='py-4 px-8 bg-[#1a1a1a] flex justify-between items-center'>
     {/* LOGO */}
 <div className='flex items-center gap-2'>
-    <img src={null} className='h-8 w-8' alt='image'/>
+    <img src={logo} className='h-8 w-8 rounded-lg' alt='image'/>
     <h1 className='text-lg font-semibold text-[#f5f5f5]'>Restro</h1>
 </div>
 
