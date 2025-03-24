@@ -24,7 +24,7 @@ const Tables = () => {
           {
             tables.map((table) => {
               return (
-                <TableCard name={table.name} status={table.status} initial={table.initial} />
+                <TableCard name={table.name} status={table.status} initial={table.initial} seats={table.seats}/>
               )
             })
           }
