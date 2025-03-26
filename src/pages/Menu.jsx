@@ -4,6 +4,10 @@ import BackBotton from '../components/shared/BackBotton'
 import { IoMdRestaurant } from 'react-icons/io'
 import MenuContainer from '../components/menu/MenuContainer'
 
+import CustomerInfo from '../components/menu/Customerinfo'
+import CardInfo from '../components/menu/CardInfo'
+import Bill from '../components/menu/Bill'
+
 const Menu = () => {
   return (
     <section className='bg-[#1f1f1f] h-[calc(100vh-5rem)] overflow-hidden flex gap-3'>
@@ -29,8 +33,15 @@ const Menu = () => {
       <MenuContainer />
       </div>
       {/* Right Div */}
-      <div className='flex-[1] bg-blue-500'>
-      
+      <div className='flex-[1] bg-[#1a1a1a] mt-4 mr-3 h-[680px] rounded-lg pt-2'>
+      {/* Customer info */}
+      <CustomerInfo />
+      <hr className='border-[#2a2a2a] border-t-2'/>
+      {/* Cart Items */}
+      <CardInfo />
+      <hr className='border-[#2a2a2a] border-t-2'/>
+      {/* Bills */}
+      <Bill />
       </div>
         
         <BottomNav />

@@ -1,13 +1,14 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { CiCircleMore } from 'react-icons/ci'
 import { MdTableBar } from 'react-icons/md'
 import { MdOutlineReorder } from 'react-icons/md'
 import { FaHome } from 'react-icons/fa'
 import { BiSolidDish } from 'react-icons/bi'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import Modal from './Modal'
 
 const BottomNav = () => {
+  const location = useLocation();
 
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -22,28 +23,43 @@ const BottomNav = () => {
   const decrement = () => {  if(guestCount <= 0) return;
     setGuestCount((prev) => prev - 1) };
 
+    // useEffect(() => { 
+    //   if(status === 'home') {
+    //     navigate('/')
+    //   }else if(status === "orders") {
+    //     navigate('/orders')
+    //   }else if(status === "tables") {
+    //     navigate('/tables')
+    //   }else if(status === "more") {
+    //     navigate('/more')
+    //   }
+    // },[status, navigate])
+  const isActive = (path) => location.pathname === path;
+    //console.log(status, "status")
   return (
     <div className='fixed bottom-0 left-0 right-0 p-2 flex justify-around bg-[#262626] h-16'>
 
-      <button onClick={() => navigate("/")} className='flex items-center justify-center text-[#f5f5f5] bg-[#343434] w-[200px] rounded-[20px]'>
+      <button onClick={() => { navigate("/")}} className={`flex items-center justify-center  ${isActive("/") ? "text-[#f5f5f5] bg-[#343434] rounded-[20px]" : "text-[#ababab]"} w-[200px]`}>
         <FaHome className="inline mr-2" size={20} />
         <p>Home</p>
         </button>
 
-      <button onClick={() => navigate("/orders")} className='flex items-center justify-center text-[#f5f5f5] w-[200px]'>
+      <button onClick={() => { navigate("/orders")}} className={`flex items-center justify-center  ${isActive("/orders") ? "text-[#f5f5f5] bg-[#343434] rounded-[20px]" : "text-[#ababab]"} w-[200px]`}>
         <MdOutlineReorder className="inline mr-2" size={20} />
         <p>Orders</p>
         </button>
 
-      <button  onClick={() => navigate("/tables")} className='flex items-center justify-center text-[#f5f5f5] w-[200px]'>
+      <button  onClick={() => { navigate('/tables')}} className={`flex items-center justify-center ${isActive("/tables") ? "text-[#f5f5f5] bg-[#343434] rounded-[20px]" : "text-[#ababab]"} w-[200px]`}>
         <MdTableBar className="inline mr-2" size={20} /><p>Tables</p>
         </button>
 
-      <button  onClick={() => navigate("/more")} className='flex items-center justify-center text-[#f5f5f5] w-[200px]'>
+      <button  onClick={() => { navigate('/more')}} className={`flex items-center justify-center ${isActive("/more") ? "text-[#f5f5f5] bg-[#343434] rounded-[20px]" : "text-[#ababab]"} w-[200px]`}>
         <CiCircleMore className="inline mr-2" size={20} /><p>More</p>
         </button>
 
+
       <button
+      disabled={isActive("/tables")}
       onClick={openModal}
       className='bg-[#F6B100] text-[#f5f5f5] rounded-full p-3 items-center absolute bottom-6'>
         <BiSolidDish size={30} />

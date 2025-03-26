@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { getBgColor } from '../../utils'
 import { menus } from '../../constants'
 import { GrRadialSelected } from 'react-icons/gr'
+import { FaShoppingCart } from 'react-icons/fa'
 
 const MenuContainer = () => {
 
@@ -47,15 +48,16 @@ const MenuContainer = () => {
                 {
                     selected?.items.map((menu) => {
                         return (
-                            <div key={menu.id} className='items-start flex flex-col items-center justify-between p-4  rounded-lg h-[100px] cursor-pointer bg-[#1a1a1a] hover:bg-[#2a2a2a]'>
-                                <div className='flex items-center justify-between w-full'>
+                            <div key={menu.id} className='items-start flex flex-col items-center justify-between p-4 rounded-lg h-[140px] cursor-pointer bg-[#1a1a1a] hover:bg-[#2a2a2a]'>
+                                <div className='flex items-start justify-between w-full '>
                                     <h1 className='text-[#f5f5f5] text-lg font-semibold'>{menu.name}</h1>
+                                   <button className='bg-[#2e4a40] text-[#02ca3a] p-2 rounded-lg'><FaShoppingCart size={20}/></button> 
                                 </div>
 
-                                <div className='flex items-center justify-between w-full'>
+                                <div className='flex items-center justify-between w-full '>
                                     <p className='text-xl font-bold text-[#f5f5f5]'>$ {menu.price}</p>
 
-                                    <div className='flex justify-between items-center bg-[#1f1f1f] px-4 py-3 rounded-lg gap-6'>
+                                    <div className='flex justify-between items-center bg-[#1f1f1f] px-4 py-2 rounded-lg gap-6'>
                                         <button
                                             onClick={() => decrement(menu.id)}
                                             className='text-yellow-500 text-2xl'>&minus;</button>
