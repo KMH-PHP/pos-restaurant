@@ -6,13 +6,18 @@ import { FaHome } from 'react-icons/fa'
 import { BiSolidDish } from 'react-icons/bi'
 import { useLocation, useNavigate } from 'react-router-dom'
 import Modal from './Modal'
+import { useDispatch } from 'react-redux'
+import { setCustomer } from '../../redux/slices/customerSlice'
 
 const BottomNav = () => {
   const location = useLocation();
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [guestCount, setGuestCount] = useState(0);
+  const [name, setName] = useState();
+  const [phone, setPhone] = useState();
+
   const openModal  = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
@@ -22,6 +27,7 @@ const BottomNav = () => {
 
   const decrement = () => {  if(guestCount <= 0) return;
     setGuestCount((prev) => prev - 1) };
+
 
     // useEffect(() => { 
     //   if(status === 'home') {
@@ -36,6 +42,12 @@ const BottomNav = () => {
     // },[status, navigate])
   const isActive = (path) => location.pathname === path;
     //console.log(status, "status")
+
+    const handleCreateOrder = () => {
+      //send data to store
+    dispatch(setCustomer({ name, phone, guests: guestCount }));
+    navigate("/tables")
+    }
   return (
     <div className='fixed bottom-0 left-0 right-0 p-2 flex justify-around bg-[#262626] h-16'>
 
@@ -71,7 +83,7 @@ const BottomNav = () => {
               Customer Name
             </label>
             <div className='flex items-center rounded-lg p-3 px-4 bg-[#1f1f1f]'>
-              <input type='text' name='' placeholder='Enter customer name' id='' className='bg-transparent flex-1 text-white focus:outline-none' />
+              <input value={name} onChange={(e) => setName(e.target.value)} type='text' name='' placeholder='Enter customer name' id='' className='bg-transparent flex-1 text-white focus:outline-none' />
             </div>
           </div>
           <div>
@@ -79,7 +91,7 @@ const BottomNav = () => {
               Customer Phone
             </label>
             <div className='flex items-center rounded-lg p-3 px-4 bg-[#1f1f1f]'>
-              <input type='number' name='number' placeholder='+95-99999999' id='' className='bg-transparent flex-1 text-white focus:outline-none' />
+              <input value={phone} onChange={(e) => setPhone(e.target.value)} type='number' name='number' placeholder='+95-99999999' id='' className='bg-transparent flex-1 text-white focus:outline-none' />
             </div>
           </div>
           <div>
@@ -90,7 +102,7 @@ const BottomNav = () => {
               <button onClick={increment} className='text-yellow-500 text-2xl'>&#43;</button>
             </div>
           </div>
-          <button onClick={() => navigate("/tables")} className='w-full bg-[#F6B100] text-[#f5f5f5] rounded-lg py-3 mt-8 hover:bg-yellow-700'>
+          <button onClick={handleCreateOrder} className='w-full bg-[#F6B100] text-[#f5f5f5] rounded-lg py-3 mt-8 hover:bg-yellow-700'>
             Create Order
           </button>
         </Modal>

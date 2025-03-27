@@ -21,3 +21,13 @@ export const getBgColor = () => {
     const color = bgarr[ramdomBg];
     return color;
 }
+
+export const getAvatarName = (name) => {
+    if(!name) return '';
+    return name.split(' ').map((n) => n[0]).join('').toUpperCase();
+}
+
+export const formatDate = (date) => {
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    return `${months[date.getMonth()]} ${String(date.getDate()).padStart(2, '0')}, ${date.getFullYear()}`
+}
