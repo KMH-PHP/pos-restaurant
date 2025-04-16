@@ -35,7 +35,7 @@ const Auth = () => {
 
         {/* {components} */}
         {
-          isRegister ? <Register /> : <Login />
+          isRegister ? <Register setIsRegister={setIsRegister}/> : <Login />
           }
        
 

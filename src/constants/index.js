@@ -173,3 +173,39 @@ export const menus = [
     {id: 8,bgColor: "#02ca3a", name: 'Butter Chicken', icon: 22,items: salads},
 ]
 
+
+export const itemsData = [
+    {title: "Total Categories", percentage: "12%", value: "8", color: "#5b45b0", isIncrease: true},
+    {title: "Total Dishes", percentage: "12%", value: "50", color: "#285430", isIncrease: true},
+    {title: "Active Orders", percentage: "12%", value: "12", color: "#735f32", isIncrease: true},
+    {title: "Total Tables", percentage: "12%", value: "10", color: "#7f167f"},
+]
+
+export const metricsData = [
+    {title: "Revenue", percentage: "12%", value: "50", color: "blue"},
+    {title: "Outbound Clicks", percentage: "16%", value: "50", color: "#288830", isIncrease: true},
+    {title: "Total Customer", percentage: "10%", value: "50", color: "blue", isIncrease: true},
+    {title: "Event Count", percentage: "10%", value: "50", color: "#770000"},
+  ]
+
+
+export const orders = [
+    {
+        id: "101",
+        customer: "Amrit Raj",
+        status: "Ready",
+        dateTime: "January 18, 2025 08: 32 PM",
+        items: 8,
+        tableNo: 3,
+        total: 250.0,
+    },
+    {
+        id: "102",
+        customer: "Amrit Raj",
+        status: "In Progress",
+        dateTime: "January 18, 2025 08: 32 PM",
+        items: 8,
+        tableNo: 3,
+        total: 250.0,
+    },
+]
