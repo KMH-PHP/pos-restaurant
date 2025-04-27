@@ -19,7 +19,7 @@ const Dashboard = () => {
     const [isTableModalOpen, setIsTableModalOpen] = useState(false);
     const [ isActiveTab, setIsActiveTab ] = useState("Metrics");
 
-    const handleOpenModal = (aciton) => {
+    const handleOpenModal = (action) => {
         if(action === "table") setIsTableModalOpen(true);
     }
 
@@ -57,7 +57,7 @@ const Dashboard = () => {
         {isActiveTab === "Metrics" &&  <Metrics />};
         {isActiveTab === "Orders" &&  <RecentOrders />};
        
-        {isTableModalOpen && <Modal />}
+        {isTableModalOpen && <Modal setIsTableModalOpen={setIsTableModalOpen}/>}
     </div>
   )
 }

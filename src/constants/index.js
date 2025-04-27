@@ -163,14 +163,14 @@ export const alchoholicDrinks = [
 ]
 
 export const menus = [
-    {id: 1,bgColor: "#025cca", name: 'Salads', icon: 22, items: salads},
-    {id: 2,bgColor: "#be3e3f", name: 'Butter Chicken', icon: 22,items: desserts},
-    {id: 3,bgColor: "#02ca3a", name: 'Butter Chicken', icon: 22,items: pizzas},
-    {id: 4,bgColor: "#f6b100", name: 'Butter Chicken', icon: 22,items: alchoholicDrinks},
-    {id: 5,bgColor: "#025cca", name: 'Butter Chicken', icon: 22,items: salads},
-    {id: 6,bgColor:"#be3e3f" , name: 'Butter Chicken', icon: 22,items: salads},
-    {id: 7,bgColor: "#f6b100", name: 'Butter Chicken', icon: 22,items: salads},
-    {id: 8,bgColor: "#02ca3a", name: 'Butter Chicken', icon: 22,items: salads},
+    {id: 1,bgColor: "#025cca", name: 'Starters', icon: 1, items: salads},
+    {id: 2,bgColor: "#be3e3f", name: 'Main Course', icon: 6,items: desserts},
+    {id: 3,bgColor: "#02ca3a", name: 'Beverages', icon: 6,items: pizzas},
+    {id: 4,bgColor: "#f6b100", name: 'Soups', icon: 6,items: alchoholicDrinks},
+    {id: 5,bgColor: "#025cca", name: 'Desserts', icon: 4,items: salads},
+    {id: 6,bgColor:"#be3e3f" , name: 'Pizzas', icon: 3,items: salads},
+    {id: 7,bgColor: "#f6b100", name: 'Alcoholic Drinks', icon: 6,items: salads},
+    {id: 8,bgColor: "#02ca3a", name: 'Salads', icon: 5,items: salads},
 ]
 
 

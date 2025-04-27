@@ -28,7 +28,7 @@ const Menu = () => {
                 <IoMdRestaurant  className='text-[#f5f5f5] text-4xl'/>
                 <div className='flex flex-col'>
                     <h1 className='text-md text-[#f5f5f5] font-semibold'>{customerData.customerName || "Customer Name" }</h1>
-                    <p className='text-xs text-[#ababab] font-medium'>{customerData.tableNo || 
+                    <p className='text-xs text-[#ababab] font-medium'>Table : {customerData.table?.tableNo || 
         "N/A"}</p>
                 </div>
             </div>

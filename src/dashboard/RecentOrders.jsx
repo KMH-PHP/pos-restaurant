@@ -1,12 +1,46 @@
 import React from 'react'
 import { GrUpdate } from 'react-icons/gr'
 import { orders } from '../constants'
+import { keepPreviousData, useMutation, useQueryClient } from '@tanstack/react-query'
+import { getOrders, updateOrderStatus } from '../https'
+import { enqueueSnackbar } from 'notistack'
+import { useQuery } from '@tanstack/react-query'
+import { formatDateAndTime } from '../utils'
+
 
 const RecentOrders = () => {
+  const queryClient = useQueryClient();
 
-  const handleStatusChange = () => {
-
+  const handleStatusChange = ({orderId, orderStatus}) => {
+    //console.log(orderId, orderStatus, "orderId and orderStatus")
+    orderStatusUpdateMutation.mutate({orderId, orderStatus});
   }
+
+  const orderStatusUpdateMutation = useMutation({
+    mutationFn: ({ orderId, orderStatus }) => updateOrderStatus({ orderId, orderStatus }),
+    onSuccess: (data) => {
+      enqueueSnackbar("Order status updated successfully!", { variant: "success" });
+      queryClient.invalidateQueries(["orders"]); //Refresh order list
+    },
+    onError: () => {
+      enqueueSnackbar("Failed to update order status!", { variant: "error" });
+    }
+  })
+
+  const { data: resData, isError } = useQuery({
+    queryKey: ["orders"],
+    queryFn: async () => {
+      return await getOrders();
+    },
+    placeholderData: keepPreviousData  
+  });
+
+  console.log(resData, "hello world")
+
+  if(isError){
+    enqueueSnackbar("Something went wrong!", { variant: "error"});
+  }
+
   return (
     <div className='container mx-auto bg-[#262626] p-4 rounded-lg'>
       <h2 className='text-[#f5f5f5] text-xl font-semibold mb-4'>
@@ -23,34 +57,35 @@ const RecentOrders = () => {
               <th className='p-3'>Items</th>
               <th className='p-3'>Table No</th>
               <th className='p-3'>Total</th>
-              <th className='p-3 text-center'>Action</th>
+              <th className='p-3'>Payment Method</th>
+              {/* <th className='p-3 text-center'>Action</th> */}
             </tr>
           </thead>
           <tbody>
-            {orders.map((order, index) => {
-              return (
+            { resData?.data?.data.map((o, index) => (
                 <tr 
                 key={index}
                 className='border-b border-gray-600 hover:bg-[#333]'
                 >
-                  <td className='p-4'>#{order.id}</td>
-                  <td className='p-4'>{order.customer}</td>
-                  <td className='p-4'><select className={`bg-[#1a1a1a] text-[#f5f5f5] border border-gray ${order.status === "Ready" ? "text-green-500" : "text-yellow-500"}`} value={order.status} onChange={(e) => handleStatusChange(index,e.target.value)}>
+                  <td className='p-4'>#{Math.floor(new Date(o.orderDate).getTime()) }</td>
+                  <td className='p-4'>{o.customerDetails?.name}</td>
+                  <td className='p-4'><select className={`bg-[#1a1a1a] text-[#f5f5f5] border p-2 rouned rounded-md  border-gray ${o.orderStatus === "Ready" ? "text-green-500" : "text-yellow-500"}`} value={o.orderStatus} onChange={(e) => handleStatusChange({orderId: o._id, orderStatus: e.target.value})}>
                     <option className='text-yellow-500' value="In Progress">In Progress</option>
                     <option className='text-green-500' value="Ready">Ready</option>
                     </select></td>
-                    <td className='p-4'>{order.dateTime}</td>
-                    <td className='p-4'>{order.items} Items</td>
-                    <td className='p-4'>Table - {order.items}</td>
-                    <td className='p-4'>${order.total.toFixed(2)}</td>
-                    <td className='p-4 text-center'>
+                    <td className='p-4'>{formatDateAndTime(o.orderDate)}</td>
+                    <td className='p-4'>{o.items.length} Items</td>
+                    <td className='p-4'>Table - {o.items.tableNo}</td>
+                    <td className='p-4'>${o.bills.totalWithTax.toFixed(2)}</td>
+                    <td className='p-4'>{o.paymentMethod}</td>
+                    {/* <td className='p-4 text-center'>
                       <button className='text-blue-400 hover:text-blue-500 transition'>
                         <GrUpdate size={20}/>
                       </button>
-                    </td>
-                  </tr>
-              )
-            })}
+                    </td> */}
+                  </tr> 
+               )         
+            )}
           </tbody>
         </table>
 
